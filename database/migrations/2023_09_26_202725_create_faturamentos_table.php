@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('faturamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('funcionario_id');
             $table->date('data');
             $table->decimal('valor', $precision = 10, $scale = 2);
             $table->string('observacoes', 200)->nullable();

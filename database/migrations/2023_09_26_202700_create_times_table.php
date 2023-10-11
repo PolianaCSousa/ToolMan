@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('lider_id')->nullable();
             $table->string('nome', 100);
             $table->string('descricao', 200);
             $table->timestamps();
