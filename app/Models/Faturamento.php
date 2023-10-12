@@ -16,4 +16,9 @@ class Faturamento extends Model
         'observacoes',
     ];
 
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
+    }
+
 }

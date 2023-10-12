@@ -17,5 +17,16 @@ class Funcionario extends Model
         'telefone',
     ];
 
+    public function faturamento(){
+
+        return $this->hasMany(Faturamento::class);
+    
+    }
+
+    public function time(){
+
+        return $this->belongsTo(Time::class);
+
+    }
 
 }

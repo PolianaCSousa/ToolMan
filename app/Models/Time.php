@@ -15,4 +15,15 @@ class Time extends Model
         'descricao',
     ];
 
+    public function funcionarios()
+    {
+        return $this->hasMany(Funcionario::class);
+    }
+
+
+    public function lider()
+    {
+        return $this->hasOne(Funcionario::class);
+    }
+
 }
