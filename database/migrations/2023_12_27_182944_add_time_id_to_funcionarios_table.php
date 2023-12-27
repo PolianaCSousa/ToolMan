@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('funcionarios', function (Blueprint $table) {
-            $table->unsignedBigInteger('time_id')->after('id');
+            $table->unsignedBigInteger('time_id')->after('id')->nullable();
             $table->foreign('time_id')->references('id')->on('times');
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('funcionarios', function (Blueprint $table) {
-            $table->unsignedBigInteger('time_id')->after('id');
+            $table->unsignedBigInteger('time_id')->after('id')->nullable();
             $table->foreign('time_id')->references('id')->on('times');
         });
     }

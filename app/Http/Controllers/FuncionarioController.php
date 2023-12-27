@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FuncionarioController extends Controller
 {
@@ -11,7 +14,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
+        //return view('cadastros.funcionarios.create')
     }
 
     /**
@@ -19,7 +22,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('cadastros.funcionarios.create');   
     }
 
     /**
@@ -27,7 +30,29 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->nome);
+        //$request->validate([]);
+
+        try{
+            DB::beginTransaction();
+
+            $funcionario = new Funcionario();
+            $funcionario->time_id   =  $request->time;
+            $funcionario->nome      =  $request->nome;
+            $funcionario->cargo     =  $request->cargo;
+            $funcionario->codigo    =  $request->codigo;
+            $funcionario->salario   =  $request->salario;
+            $funcionario->telefone  =  $request->telefone;
+            $funcionario->save();
+
+            DB::commit();
+
+            return view('cadastros.funcionarios.index');
+
+        }catch(Exception $e){
+            DB::rollBack();
+
+        }
     }
 
     /**

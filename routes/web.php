@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::middleware([
@@ -29,4 +30,6 @@ Route::middleware([
 });
 
 
-Route::resource('times', TimeController::class);
+Route::resource('/times', TimeController::class);
+
+Route::resource('/funcionarios', FuncionarioController::class);
