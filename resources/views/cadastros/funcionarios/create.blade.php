@@ -3,7 +3,7 @@
 @section('body')
 
 <div class="container">
-  <form method="POST" action="/funcionarios">
+  <form method="POST" action="{{route('funcionarios.store')}}">
     @csrf
 
     <label for="time">Time:</label>

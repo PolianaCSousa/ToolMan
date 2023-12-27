@@ -3,5 +3,5 @@
 @section('body')
  <h1>Exibindo funcionários</h1>
 
- <button>Novo Funcionário</button>
+ <a role="button" href="{{route('funcionarios.create')}}">Cadastrar Funcionário</a>
 @endsection
