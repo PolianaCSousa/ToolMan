@@ -7,7 +7,7 @@
       <a href="{{route('funcionarios.index')}}">Funcionários</a>
     </div>
     <div class="col">
-      <a href="#">Times</a>
+      <a href="{{route('times.index')}}">Times</a>
     </div>
   </div>
   <h1>Home</h1>

@@ -11,7 +11,7 @@ class TimeController extends Controller
      */
     public function index()
     {
-        //
+        return view('cadastros.times.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class TimeController extends Controller
      */
     public function create()
     {
-        //
+        return view('cadastros.times.create');
     }
 
     /**
