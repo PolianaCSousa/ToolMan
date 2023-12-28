@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaturamentoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::middleware([
 });
 
 
-Route::resource('/times', TimeController::class);
+Route::resource('/time', TimeController::class);
 
-Route::resource('/funcionarios', FuncionarioController::class);
+Route::resource('/funcionario', FuncionarioController::class);
+
+Route::resource('/faturamento', FaturamentoController::class);

@@ -4,6 +4,6 @@
 
 <h1>Exibindo Times</h1>
 
-<a href="{{route('times.create')}}">Cadastrar Time</a>
+<a href="{{route('time.create')}}">Cadastrar Time</a>
 
 @endsection

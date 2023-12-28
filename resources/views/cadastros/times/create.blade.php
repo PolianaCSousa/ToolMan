@@ -4,7 +4,7 @@
 @section('body')
 
 <div class="container">
-  <form method="POST" action="{{route('times.store')}}">
+  <form method="POST" action="{{route('time.store')}}">
     @csrf
     <label for="lider">Líder:</label>
     <select name="lider_id" id="lider">

@@ -51,7 +51,7 @@ class TimeController extends Controller
     
             DB::commit();
 
-            return redirect()->route('times.index');
+            return redirect()->route('time.index');
              //return view('cadastros.times.index');
 
         }catch(Exception $e){
