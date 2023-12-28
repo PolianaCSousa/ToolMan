@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use App\Models\Time;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TimeController extends Controller
 {
@@ -39,12 +41,24 @@ class TimeController extends Controller
         //validação
 
         //dd($request);
+        try{
+            DB::beginTransaction();
+            $time = new Time();
+            $time->lider_id   = $request->lider_id;
+            $time->nome       = $request->nome;
+            $time->descricao  = $request->descricao;
+            $time->save();
+    
+            DB::commit();
 
-        /*$time = new Time();
-        $time->lider_id   = $request->lider_id;
-        $time->nome       = $request->nome;
-        $time->descricao  = $request->descricao;
-        */
+            return redirect()->route('times.index');
+             //return view('cadastros.times.index');
+
+        }catch(Exception $e){
+             DB::rollback();        
+            
+        }
+        
     }
 
     /**
