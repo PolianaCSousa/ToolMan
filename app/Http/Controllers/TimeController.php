@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
+use App\Models\Time;
 use Illuminate\Http\Request;
 
 class TimeController extends Controller
@@ -19,7 +21,12 @@ class TimeController extends Controller
      */
     public function create()
     {
-        return view('cadastros.times.create');
+
+        $dados['funcionarios'] = Funcionario::select('nome', 'id')->orderBy('nome')->get();
+
+        //dd($dados, $dados['funcionarios']);
+
+        return view('cadastros.times.create', $dados);
     }
 
     /**
@@ -27,7 +34,17 @@ class TimeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+        //validação
+
+        //dd($request);
+
+        /*$time = new Time();
+        $time->lider_id   = $request->lider_id;
+        $time->nome       = $request->nome;
+        $time->descricao  = $request->descricao;
+        */
     }
 
     /**
