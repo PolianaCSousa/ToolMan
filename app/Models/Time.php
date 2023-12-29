@@ -21,9 +21,4 @@ class Time extends Model
     }
 
 
-    public function lider()
-    {
-        return $this->hasOne(Funcionario::class);
-    }
-
 }

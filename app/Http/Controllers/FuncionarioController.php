@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,13 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        return view('cadastros.funcionarios.index');
+        //$dados = new Collection();
+        $dados['funcionarios'] = Funcionario::select('nome', 'cargo', 'time_id')->with('time')->orderBy('nome')->get();
+        //$dados['funcionarios'] = Funcionario::with('time')->orderBy('nome')->get();
+        
+       //dd($dados, $dados['funcionarios']);
+
+        return view('cadastros.funcionarios.index', $dados);
     }
 
     /**

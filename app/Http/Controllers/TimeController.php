@@ -48,6 +48,10 @@ class TimeController extends Controller
             $time->nome       = $request->nome;
             $time->descricao  = $request->descricao;
             $time->save();
+
+            $funcionario = Funcionario::findOrFail($request->lider_id);
+            $funcionario->time_id = $time->id; //atualiza o id do time na tabela de funcionarios
+            $funcionario->save();
     
             DB::commit();
 
