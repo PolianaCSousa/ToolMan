@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faturamento;
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FaturamentoController extends Controller
 {
@@ -11,7 +14,7 @@ class FaturamentoController extends Controller
      */
     public function index()
     {
-        //
+        return view('cadastros.faturamento.index');
     }
 
     /**
@@ -19,7 +22,8 @@ class FaturamentoController extends Controller
      */
     public function create()
     {
-        //
+        $dados['funcionarios'] = Funcionario::select('nome', 'id')->orderBy('nome')->get();
+        return view('cadastros.faturamento.create', $dados);
     }
 
     /**
@@ -28,6 +32,24 @@ class FaturamentoController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+
+        try{
+            DB::beginTransaction();
+
+            $faturamento = new Faturamento();
+            $faturamento->funcionario_id = $request->funcionario_id;
+            $faturamento->data           = $request->data;
+            $faturamento->valor          = $request->valor;
+            $faturamento->observacoes    = $request->observacoes;
+            $faturamento->save();
+
+            DB::commit();
+            return redirect()->route('faturamento.index');
+
+        }catch(Exception $e){
+            DB::rollback();
+        }
     }
 
     /**
