@@ -15,6 +15,8 @@ class TimeController extends Controller
      */
     public function index()
     {
+        //$dados['times'] = Times::select('lider_id', 'nome', 'descricao')->with('funcionarios');
+
         return view('cadastros.times.index');
     }
 
