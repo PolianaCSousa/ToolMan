@@ -51,6 +51,7 @@ class TimeController extends Controller
             $time->descricao  = $request->descricao;
             $time->save();
 
+            //FARIA UM FORAEACH AQUI PRA SALVAR O TIME_ID PARA CADA MEMBRO DO TIME
             $funcionario = Funcionario::findOrFail($request->lider_id);
             $funcionario->time_id = $time->id; //atualiza o id do time na tabela de funcionarios
             $funcionario->save();

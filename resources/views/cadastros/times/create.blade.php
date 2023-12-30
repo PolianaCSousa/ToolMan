@@ -17,6 +17,29 @@
     <label for="descricao">Descrição:</label>
     <input type="text" id="descricao" name="descricao" value="{{old('descricao', '')}}">
 
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Cargo</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td>
+              Select pro nome
+            </td>
+            <td>
+              Cargo automático
+            </td>
+          </tr>
+        </tbody>
+        
+
+      </table>
+    </div>
 
     <button type="submit">Salvar</button>
 
@@ -24,3 +47,10 @@
 </div>
 
 @endsection
+
+  
+@push('scripts')
+
+
+
+@endpush
