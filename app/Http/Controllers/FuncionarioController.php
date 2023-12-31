@@ -54,7 +54,7 @@ class FuncionarioController extends Controller
 
             DB::commit();
 
-            return view('cadastros.funcionarios.index');
+            return redirect()->route('funcionario.index');
 
         }catch(Exception $e){
             DB::rollBack();

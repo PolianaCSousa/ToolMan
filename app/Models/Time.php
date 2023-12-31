@@ -17,12 +17,12 @@ class Time extends Model
 
     public function funcionarios()
     {
-        return $this->hasMany(Funcionario::class);
+        return $this->hasMany(Funcionario::class, 'time_id', 'id');
     }
 
     public function lider()
     {
-        return $this->hasOne(Funcionario::class, 'lider_id', 'id');
+        return $this->hasOne(Funcionario::class, 'id', 'lider_id');
     }
 
 }

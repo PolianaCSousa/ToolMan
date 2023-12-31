@@ -15,9 +15,13 @@ class TimeController extends Controller
      */
     public function index()
     {
-        //$dados['times'] = Times::select('lider_id', 'nome', 'descricao')->with('funcionarios');
+        $dados['time'] = Time::select('nome', 'descricao', 'lider_id')->with('lider')->get();
+        //$dados['lider'] = Time::with('lider')->get();
+        //$dados['membros'] = Time::with('funcionarios')->get();
+        
+        //dd($dados);
 
-        return view('cadastros.times.index');
+        return view('cadastros.times.index', $dados);
     }
 
     /**
@@ -42,7 +46,7 @@ class TimeController extends Controller
         
         //validação
 
-        dd($request);
+        //dd($request);
         try{
             DB::beginTransaction();
             $time = new Time();
@@ -52,9 +56,18 @@ class TimeController extends Controller
             $time->save();
 
             //FARIA UM FORAEACH AQUI PRA SALVAR O TIME_ID PARA CADA MEMBRO DO TIME
-            $funcionario = Funcionario::findOrFail($request->lider_id);
-            $funcionario->time_id = $time->id; //atualiza o id do time na tabela de funcionarios
-            $funcionario->save();
+            $lider = Funcionario::findOrFail($request->lider_id);
+            $lider->time_id = $time->id; //atualiza o id do time na tabela de funcionarios
+            $lider->save();
+
+            if($request->membro_id){
+                foreach($request->membro_id as $membro_id){
+                   
+                    $membro = Funcionario::findOrFail($membro_id);
+                    $membro->time_id = $time->id;
+                    $membro->save();
+                }
+            }
     
             DB::commit();
 
