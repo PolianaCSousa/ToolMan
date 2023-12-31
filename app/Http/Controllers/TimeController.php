@@ -26,7 +26,7 @@ class TimeController extends Controller
     public function create()
     {
 
-        $dados['funcionarios'] = Funcionario::select('nome', 'id')->orderBy('nome')->get();
+        $dados['funcionarios'] = Funcionario::select('nome', 'cargo','id')->orderBy('nome')->get();
 
         //dd($dados, $dados['funcionarios']);
 
@@ -42,7 +42,7 @@ class TimeController extends Controller
         
         //validação
 
-        //dd($request);
+        dd($request);
         try{
             DB::beginTransaction();
             $time = new Time();
