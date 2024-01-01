@@ -2,8 +2,17 @@
 
 @section('body')
 
-<div class="container">
-  <h1>Exibindo Times</h1>
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col">
+      <h1>Exibindo Times</h1>
+    </div>
+    
+    <div class="col text-end">
+      <a href="{{route('home')}}" class="btn btn-outline-primary"><i class="ti ti-arrow-narrow-left mr-3"></i>Voltar</a>
+    </div>
+  </div>
+
 </div>
 
 <div class="container text-end">

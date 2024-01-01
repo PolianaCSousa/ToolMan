@@ -2,6 +2,18 @@
 
 @section('body')
 
+<div class="container-fluid mt-3 mb-5">
+  <div class="row">
+    <div class="col">
+      Criar um novo funcionário
+    </div>
+    <div class="col text-end">
+      <a href="{{route('funcionario.index')}}" class="btn btn-outline-primary"><i class="ti ti-arrow-narrow-left mr-3"></i>Voltar</a>
+    </div>
+  </div>
+  
+</div>
+
 <div class="container">
   <form method="POST" action="{{route('funcionario.store')}}">
     @csrf

@@ -14,7 +14,11 @@ class FaturamentoController extends Controller
      */
     public function index()
     {
-        return view('cadastros.faturamento.index');
+        $dados['faturamentos'] = Faturamento::select('funcionario_id', 'data', 'valor')->with('funcionario')->get();
+
+        //dd($dados);
+
+        return view('cadastros.faturamento.index', $dados);
     }
 
     /**
