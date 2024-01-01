@@ -42,7 +42,7 @@
           @endif
         </td>
         <td>
-          <button class="btn btn-outline-dark">Visualizar</button>
+          <a href="{{route('funcionario.show', $f->id)}}" class="btn btn-outline-dark">Visualizar</a>
         </td>
       </tr>
       @endforeach

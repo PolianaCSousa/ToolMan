@@ -16,7 +16,7 @@ class FuncionarioController extends Controller
     public function index()
     {
         //$dados = new Collection();
-        $dados['funcionarios'] = Funcionario::select('nome', 'cargo', 'time_id')->with('time')->orderBy('nome')->get();
+        $dados['funcionarios'] = Funcionario::select('id', 'nome', 'cargo', 'time_id')->with('time')->orderBy('nome')->get();
         //$dados['funcionarios'] = Funcionario::with('time')->orderBy('nome')->get();
         
        //dd($dados, $dados['funcionarios']);
@@ -67,7 +67,21 @@ class FuncionarioController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //dd($id);
+        //$dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
+        $dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
+        $dados['time'] = $dados['funcionario']->time;
+        //$dados['time'] = Funcionario::where('id', $id)->select('time_id')->with('time')->get();
+        //$teste = Funcionario::find($id);
+        //$teste->load('time');
+        
+        //$funcionario = Funcionario::find($id);
+        //$sql = $funcionario->toSql();
+        //dd($sql);
+
+        dd($dados);
+
+        return view('cadastros.funcionarios.show');
     }
 
     /**

@@ -25,7 +25,7 @@ class Funcionario extends Model
 
     public function time(){
 
-        return $this->belongsTo(Time::class);
+        return $this->belongsTo(Time::class, 'id', 'time_id');
 
     }
 
