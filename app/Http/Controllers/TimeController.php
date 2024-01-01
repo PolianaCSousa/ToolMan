@@ -15,7 +15,7 @@ class TimeController extends Controller
      */
     public function index()
     {
-        $dados['time'] = Time::select('nome', 'descricao', 'lider_id')->with('lider')->get();
+        $dados['times'] = Time::select('nome', 'descricao', 'lider_id')->with('lider')->get();
         //$dados['lider'] = Time::with('lider')->get();
         //$dados['membros'] = Time::with('funcionarios')->get();
         
