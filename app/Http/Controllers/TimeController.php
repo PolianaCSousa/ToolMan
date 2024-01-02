@@ -15,7 +15,7 @@ class TimeController extends Controller
      */
     public function index()
     {
-        $dados['times'] = Time::select('nome', 'descricao', 'lider_id')->with('lider')->get();
+        $dados['times'] = Time::select('id', 'nome', 'descricao', 'lider_id')->with('lider')->get();
         //$dados['lider'] = Time::with('lider')->get();
         //$dados['membros'] = Time::with('funcionarios')->get();
         
@@ -86,7 +86,9 @@ class TimeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dados['time'] = Time::findOrFail($id)->load('lider');
+
+        return view('cadastros.times.show', $dados);
     }
 
     /**

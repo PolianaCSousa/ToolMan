@@ -36,7 +36,7 @@
         <td>{{$t->nome}}</td>
         <td>{{$t->lider->nome}}</td>
         <td>{{$t->descricao}}</td>
-        <td><button class="btn btn-outline-dark">Visualizar</button></td>
+        <td><a href="{{route('time.show', $t->id)}}" class="btn btn-outline-dark">Visualizar</a></td>
       </tr>
       @endforeach
     </tbody>

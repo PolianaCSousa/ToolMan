@@ -35,6 +35,8 @@
     
     <label for="telefone">Telefone:</label>
     <input type="text" id="telefone" name="telefone" value="{{old('telefone', $funcionario->telefone)}}">
+
+    <button type="submit">Salvar alterações</button>
  
   </form>
 </div>
