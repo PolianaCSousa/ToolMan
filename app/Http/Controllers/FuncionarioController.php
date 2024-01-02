@@ -85,9 +85,9 @@ class FuncionarioController extends Controller
         //$sql = $funcionario->toSql();
         //dd($sql);
 
-        dd($dados);
+        //dd($dados);
 
-        return view('cadastros.funcionarios.show');
+        return view('cadastros.funcionarios.show', $dados);
     }
 
     /**
