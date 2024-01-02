@@ -33,7 +33,7 @@
           <td>{{$f->funcionario->nome}}</td>
           <td>{{$f->valor}}</td>
           <td>{{$f->data}}</td>
-          <td><button class="btn btn-outline-dark">Visualizar</button></td>
+          <td><a href="{{route('faturamento.show', $f->id)}}" class="btn btn-outline-dark">Visualizar</a></td>
         </tr>
       @endforeach
     </tbody>

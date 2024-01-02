@@ -14,7 +14,7 @@ class FaturamentoController extends Controller
      */
     public function index()
     {
-        $dados['faturamentos'] = Faturamento::select('funcionario_id', 'data', 'valor')->with('funcionario')->get();
+        $dados['faturamentos'] = Faturamento::select('id', 'funcionario_id', 'data', 'valor')->with('funcionario')->get();
 
         //dd($dados);
 
@@ -61,7 +61,9 @@ class FaturamentoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dados['faturamento'] = Faturamento::findOrFail($id)->load('funcionario');
+
+        return view('cadastros.faturamento.show', $dados);
     }
 
     /**
