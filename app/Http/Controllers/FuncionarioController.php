@@ -18,8 +18,12 @@ class FuncionarioController extends Controller
         //$dados = new Collection();
         $dados['funcionarios'] = Funcionario::select('id', 'nome', 'cargo', 'time_id')->with('time')->orderBy('nome')->get();
         //$dados['funcionarios'] = Funcionario::with('time')->orderBy('nome')->get();
+
+        //NAO FUNCIONOU: $dados['load'] = Funcionario::select('id', 'nome', 'cargo')->orderBy('nome')->get()->load('time');
+
+
         
-       //dd($dados, $dados['funcionarios']);
+       //dd($dados);
 
         return view('cadastros.funcionarios.index', $dados);
     }
@@ -69,12 +73,14 @@ class FuncionarioController extends Controller
     {
         //dd($id);
         //$dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
-        $dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
-        $dados['time'] = $dados['funcionario']->time;
+        //$dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
+        //$dados['time'] = $dados['funcionario']->time;
         //$dados['time'] = Funcionario::where('id', $id)->select('time_id')->with('time')->get();
         //$teste = Funcionario::find($id);
         //$teste->load('time');
         
+        $dados['funcionario'] = Funcionario::findOrFail($id)->load(['time', 'lideranca']);
+
         //$funcionario = Funcionario::find($id);
         //$sql = $funcionario->toSql();
         //dd($sql);

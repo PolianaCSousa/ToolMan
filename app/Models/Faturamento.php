@@ -18,7 +18,7 @@ class Faturamento extends Model
 
     public function funcionario()
     {
-        return $this->belongsTo(Funcionario::class);
+        return $this->belongsTo(Funcionario::class, 'funcionario_id', 'id');
     }
 
 }

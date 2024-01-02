@@ -22,7 +22,7 @@ class Time extends Model
 
     public function lider()
     {
-        return $this->hasOne(Funcionario::class, 'id', 'lider_id');
+        return $this->belongsTo(Funcionario::class, 'lider_id', 'id');
     }
 
 }

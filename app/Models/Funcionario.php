@@ -19,14 +19,19 @@ class Funcionario extends Model
 
     public function faturamento(){
 
-        return $this->hasMany(Faturamento::class);
+        return $this->hasMany(Faturamento::class, 'funcionario_id', 'id');
     
     }
 
     public function time(){
 
-        return $this->belongsTo(Time::class, 'id', 'time_id');
+        return $this->belongsTo(Time::class, 'time_id', 'id');
 
+    }
+
+    public function lideranca()
+    {
+        return $this->hasOne(Time::class, 'lider_id', 'id');
     }
 
 }
