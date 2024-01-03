@@ -22,6 +22,11 @@
     <input type="text" id="nome" name="nome" value="{{old('nome', $funcionario->nome)}}">
     
     <label for="time">Time:</label>
+    <select name="time_id" id="times">
+      @foreach($times as $t)
+        <option value="{{$t->id}}">{{$t->nome}}</option>
+      @endforeach
+    </select>
     <input type="text" id="time" name="time_id" value="{{old('time_id', $funcionario->time->nome)}}">
     
     <label for="cargo">Cargo:</label>

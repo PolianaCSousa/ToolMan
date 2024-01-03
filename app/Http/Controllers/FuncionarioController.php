@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
+use App\Models\Time;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -48,7 +49,6 @@ class FuncionarioController extends Controller
             DB::beginTransaction();
 
             $funcionario = new Funcionario();
-            $funcionario->time_id   =  $request->time;
             $funcionario->nome      =  $request->nome;
             $funcionario->cargo     =  $request->cargo;
             $funcionario->codigo    =  $request->codigo;
@@ -80,6 +80,7 @@ class FuncionarioController extends Controller
         //$teste->load('time');
         
         $dados['funcionario'] = Funcionario::findOrFail($id)->load(['time', 'lideranca']);
+        $dados['times'] = Time::select('nome', 'id')->orderBy('nome')->get();
 
         //$funcionario = Funcionario::find($id);
         //$sql = $funcionario->toSql();
@@ -91,19 +92,22 @@ class FuncionarioController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validação
+
+        try{
+            DB::beginTransaction();
+
+            $funcionario = Funcionario::findOrFail($id);
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+        }
+        
     }
 
     /**

@@ -18,8 +18,6 @@
   <form method="POST" action="{{route('funcionario.store')}}">
     @csrf
 
-    <label for="time">Time:</label>
-    <input type="text" id="time" disabled name="time">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" value="{{old('nome')}}">
     <label for="cargo">Cargo:</label>
