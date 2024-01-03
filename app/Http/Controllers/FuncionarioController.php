@@ -71,20 +71,9 @@ class FuncionarioController extends Controller
      */
     public function show(string $id)
     {
-        //dd($id);
-        //$dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
-        //$dados['funcionario'] = Funcionario::where('id', $id)->firstOrFail();
-        //$dados['time'] = $dados['funcionario']->time;
-        //$dados['time'] = Funcionario::where('id', $id)->select('time_id')->with('time')->get();
-        //$teste = Funcionario::find($id);
-        //$teste->load('time');
-        
+       
         $dados['funcionario'] = Funcionario::findOrFail($id)->load(['time', 'lideranca']);
-        $dados['times'] = Time::select('nome', 'id')->orderBy('nome')->get();
-
-        //$funcionario = Funcionario::find($id);
-        //$sql = $funcionario->toSql();
-        //dd($sql);
+        $dados['times'] = Time::select('nome', 'id')->orderBy('nome')->get();;
 
         //dd($dados);
 
@@ -101,12 +90,23 @@ class FuncionarioController extends Controller
         try{
             DB::beginTransaction();
 
-            $funcionario = Funcionario::findOrFail($id);
+            $funcionario           = Funcionario::findOrFail($id);
+            $funcionario->nome     = $request->nome;
+            $funcionario->time_id  = $request->time_id;
+            $funcionario->cargo    = $request->cargo;
+            $funcionario->codigo   = $request->codigo;
+            $funcionario->salario  = $request->salario;
+            $funcionario->telefone = $request->telefone;
+            $funcionario->save();
 
             DB::commit();
+
+            return redirect()->route('funcionario.index');
+
         }catch(Exception $e){
             DB::rollBack();
         }
+
         
     }
 

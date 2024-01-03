@@ -24,10 +24,9 @@
     <label for="time">Time:</label>
     <select name="time_id" id="times">
       @foreach($times as $t)
-        <option value="{{$t->id}}">{{$t->nome}}</option>
+        <option value="{{$t->id}}" @if($t->id == $funcionario->time->id) selected @endif>{{$t->nome}}</option>
       @endforeach
     </select>
-    <input type="text" id="time" name="time_id" value="{{old('time_id', $funcionario->time->nome)}}">
     
     <label for="cargo">Cargo:</label>
     <input type="text" id="cargo" name="cargo" value="{{old('cargo', $funcionario->cargo)}}">
