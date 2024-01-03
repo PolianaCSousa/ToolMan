@@ -86,17 +86,12 @@ class TimeController extends Controller
      */
     public function show(string $id)
     {
-        $dados['time'] = Time::findOrFail($id)->load('lider');
+        $dados['time'] = Time::findOrFail($id)->load(['lider', 'membros']);
+        $dados['funcionarios'] = Funcionario::select('nome', 'id')->orderBy('nome')->get();
+
+        //dd($dados, $dados['time']->membros);
 
         return view('cadastros.times.show', $dados);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -104,7 +99,23 @@ class TimeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validacao
+
+        try{
+            DB::beginTransaction();
+
+            $time = Time::findOrFail($id);
+            $time->nome = $request->nome;
+            $time->lider_id = $request->lider_id;
+            $time->descricao = $request->descricao;
+            $time->save();
+
+            //IMPLEMENTAR O ARMAZENAMENTO DOS FUNCIONÁRIOS NOVOS E EXCLUSÃO DE FUNCIONÁRIOS
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+        }
     }
 
     /**

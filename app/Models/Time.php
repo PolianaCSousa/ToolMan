@@ -15,7 +15,7 @@ class Time extends Model
         'descricao',
     ];
 
-    public function funcionarios()
+    public function membros()
     {
         return $this->hasMany(Funcionario::class, 'time_id', 'id');
     }

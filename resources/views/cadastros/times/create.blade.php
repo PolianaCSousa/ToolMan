@@ -28,15 +28,16 @@
     <label for="descricao">Descrição:</label>
     <input type="text" id="descricao" name="descricao" value="{{old('descricao', '')}}">
     
-  <div class="container my-5">
-    <select id="membros">
-      @foreach($funcionarios as $k => $f)
-        <option value="{{$f->id}}" id="nome_membro">{{$f->nome}}</option>
-      @endforeach
-    </select>
+    <div class="container my-5">
+      <select id="membros">
+        @foreach($funcionarios as $k => $f)
+          <option value="{{$f->id}}">{{$f->nome}}</option>
+        @endforeach
+      </select>
 
-    <button type="button" class="btn btn-sm btn-secondary" id="adiciona-membro"><i class="ti ti-square-rounded-plus"></i></button>
-  </div>
+      <button type="button" class="btn btn-sm btn-secondary" id="adiciona-membro" title="Adicionar membro"><i class="ti ti-square-rounded-plus"></i></button>
+    </div>
+    
     <div class="col-12 my-4">
       <div class="card">
         <div class="table-responsive">
