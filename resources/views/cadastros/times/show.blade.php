@@ -59,7 +59,7 @@
                   <tr class="membros" id="tabela">
                     <td><input type="hidden" value="{{$membro->id}}" name="membro_id[]" class="form-control form-control-sm"></td>
                     <td><input type="text" class="form-control form-control-sm" id="funcionario" readonly value="{{$membro->nome}}"></td>
-                    <td class="align-middle"><button type="button" data-method="delete" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
+                    <td class="align-middle"><button type="button" data-id="{{$membro->id}}" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
                   </tr>
                 @endforeach
 
@@ -75,6 +75,10 @@
       </div>
     </div>
 
+    <div class="excluidos">
+      
+    </div>
+        
 
     <button type="submit">Salvar alterações</button>
 
@@ -88,12 +92,6 @@
 <script type="module">
   $(document).ready(function(){
 
-    //var qtd_membros = $('tbody tr').length
-
-    //eu posso verificar se a linha com a classe tabela existe, se ela existir é porque nao tem nenhum membro no time, se ela nao existir quer dizer que existem membros no time, ou algo do tipo
-
-    //console.log('qtd_membros: ' + qtd_membros);
-
     $('#adiciona-membro').click(function(){
 
       let id_funcionario = $('#membros').val();
@@ -104,19 +102,19 @@
       if($('#tabela').hasClass('membros')) { //isso significa que existem membros no time
 
         var novoFuncionario = `<tr class="membros" id="tabela">
-                                <td><input type="hidden" value="${id_funcionario}" name="membro_id[]" class="form-control form-control-sm"></td>
+                                <td><input type="hidden" value="${id_funcionario}" name="novo_membro_id[]" class="form-control form-control-sm"></td>
                                 <td><input type="text" class="form-control form-control-sm" id="funcionario" readonly value="${nome_funcionario}"></td>
-                                <td class="align-middle"><button type="button" data-method="delete" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
+                                <td class="align-middle"><button type="button" data-id="${id_funcionario}" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
                               </tr>`;
 
         $('#tabela').append(novoFuncionario);
 
-      }else{
+      }else{ //não havia membros no time
 
         var novoFuncionario = `<tr class="membros" id="tabela">
-                                <td><input type="hidden" value="${id_funcionario}" name="membro_id[]" class="form-control form-control-sm"></td>
+                                <td><input type="hidden" value="${id_funcionario}" name="novo_membro_id[]" class="form-control form-control-sm"></td>
                                 <td><input type="text" class="form-control form-control-sm" id="funcionario" readonly value="${nome_funcionario}"></td>
-                                <td class="align-middle"><button type="button" data-method="delete" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
+                                <td class="align-middle"><button type="button" data-id="${id_funcionario}" class="btn btn-crud-sm btn-pill btn-remover-funcionario" title="Excluir funcionário"><i class="ti ti-trash"/></button></td>
                               </tr>`;
         
         $('#tabela').html(novoFuncionario);
@@ -127,9 +125,14 @@
 
     $(document).on('click', '.btn-remover-funcionario', function (){
 
+      //antes de remover, pega o id do funcionário que foi excluído do time
+      let id_membro_excluido = $(this).data('id');
       $(this).closest('tr').remove();
 
-      //ao remover um funcionario que estava no time, eu posso enviar no request o time_id como null pro funcionário :)
+      //cria inputs do tipo hidden com o id do funcionario que foi excluído
+      $('.excluidos').append(`<input type="hidden" name="excluidos[]" value="${id_membro_excluido}">`);
+
+      //console.log(id_membro_excluido);
 
     });
 

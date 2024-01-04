@@ -55,7 +55,6 @@ class TimeController extends Controller
             $time->descricao  = $request->descricao;
             $time->save();
 
-            //FARIA UM FORAEACH AQUI PRA SALVAR O TIME_ID PARA CADA MEMBRO DO TIME
             $lider = Funcionario::findOrFail($request->lider_id);
             $lider->time_id = $time->id; //atualiza o id do time na tabela de funcionarios
             $lider->save();
@@ -101,6 +100,8 @@ class TimeController extends Controller
     {
         //validacao
 
+        //dd($request->all());
+
         try{
             DB::beginTransaction();
 
@@ -110,9 +111,28 @@ class TimeController extends Controller
             $time->descricao = $request->descricao;
             $time->save();
 
-            //IMPLEMENTAR O ARMAZENAMENTO DOS FUNCIONÁRIOS NOVOS E EXCLUSÃO DE FUNCIONÁRIOS
+            //remove o membro em questão do time, deixando o campo de time_id nulo
+            if($request->excluidos){
+                foreach($request->excluidos as $id_excluido){
+                    $membro_excluido = Funcionario::findOrFail($id_excluido);
+                    $membro_excluido->time_id = null;
+                    $membro_excluido->save();
+                }
+            }
+
+            //atualiza o campo time_id para os novos membros do time
+            if($request->novo_membro_id){
+                foreach($request->novo_membro_id as $id_membro){
+                    $novo_membro = Funcionario::findOrFail($id_membro);
+                    $novo_membro->time_id = $id;
+                    $novo_membro->save();
+                }
+            }
 
             DB::commit();
+
+            return redirect()->route('time.index');
+
         }catch(Exception $e){
             DB::rollBack();
         }
