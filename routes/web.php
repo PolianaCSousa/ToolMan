@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -30,6 +28,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
 Route::resource('/time', TimeController::class);
 
