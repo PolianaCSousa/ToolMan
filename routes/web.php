@@ -23,17 +23,21 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
 });
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::resource('/time', TimeController::class);
 
 Route::resource('/funcionario', FuncionarioController::class);
 
 Route::resource('/faturamento', FaturamentoController::class);
+
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');

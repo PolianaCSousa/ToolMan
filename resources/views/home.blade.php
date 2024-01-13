@@ -1,19 +1,33 @@
 @extends('layouts.main')
 
 @section('body')
-  
-<div class="container-fluid p-2">
-  <div class="row">
-    <div class="col">
-      <a class="btn btn-primary" href="{{route('funcionario.index')}}">Funcionários</a>
-    </div>
-    <div class="col">
-      <a class="btn btn-primary" href="{{route('time.index')}}">Times</a>
-    </div>
-    <div class="col">
-      <a class="btn btn-primary" href="{{route('faturamento.index')}}">Faturamentos</a>
+
+<nav class="navbar navbar-expand-lg bg-body-secondary">
+  <div class="container-fluid">
+    <a href="{{route('home')}}" class="navbar-brand">Toolman</a>
+    <div>
+      <div class="navbar-nav">
+        <a href="{{route('funcionario.index')}}" class="nav-link">Funcionários</a>
+        <a href="{{route('time.index')}}" class="nav-link">Times</a>
+        <a href="{{route('faturamento.index')}}" class="nav-link">Faturamentos</a>
+        @auth
+          <a href="{{route('dashboard')}}" class="nav-link">Meu perfil</a>
+          <form action="{{route('logout')}}" method="POST">
+            @csrf
+              <a href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault();this.closest('form').submit();"> Sair</a>
+          </form>
+        @endauth
+        @guest
+          <a href="{{route('login')}}" class="nav-link">Entrar</a>
+          <a href="{{route('register')}}" class="nav-link">Registrar-se</a>
+        @endguest
+      </div>
     </div>
   </div>
+</nav>
+
+
+
 
   <div class="m-3 mt-5">
     <h1>Home</h1>
