@@ -16,7 +16,7 @@
 <div class="container">
   <form action="{{route('produto.store')}}" method="POST">
     @csrf 
-    <x-tabler.input label="Nome" name="nome" value="{{old('nome')}}"/>
+    <x-tabler.input label="Nome" name="nome" value="{{old('nome')}}" type="text"/>
     <x-tabler.text-area label="Descrição" name="descricao" value="{{old('descricao')}}"/>
     
     <div class="row">

@@ -18,7 +18,7 @@
     @method('PUT')
     @csrf 
 
-    <x-tabler.input label="Nome" name="nome" value="{{old('nome', $produto->nome)}}"/>
+    <x-tabler.input label="Nome" name="nome" value="{{old('nome', $produto->nome)}}" type="text"/>
     <x-tabler.text-area label="Descrição" name="descricao" value="{{old('descricao', $produto->descricao)}}"/>
     
     <div class="row">

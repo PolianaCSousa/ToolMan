@@ -3,5 +3,5 @@
 
 <div class="mb-3">
   <label class="form-label">{{$label}}</label>
-  <input value="{{$value ?? null}}" type="{{$type ?? 'text'}}" class="form-control" name="{{$name}}" placeholder="{{$placeholder ?? null}}" />
+  <input value="{{$value ?? null}}" @if($type == 'number') step="0.1" @endif type="{{$type}}" class="form-control" name="{{$name}}" placeholder="{{$placeholder ?? null}}" />
 </div>
