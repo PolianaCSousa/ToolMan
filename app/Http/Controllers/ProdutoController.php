@@ -66,23 +66,43 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $dados['produto'] = Produto::findOrFail($id);
+        //dd($dados['produto']);
+
+        return view('cadastros.produtos.show', $dados);
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $produto = Produto::findOrFail($id);
+            
+            $produto->nome        = $request->nome;
+            $produto->descricao   = $request->descricao;
+            $produto->estoque     = $request->estoque;
+            $produto->estoque_max = $request->estoque_max;
+            $produto->estoque_min = $request->estoque_min;
+            $produto->preco       = $request->preco;
+            $produto->save();
+            //dd($produto);
+            DB::commit();
+
+            return redirect()->route('produto.index');
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            dd($e->getMessage());
+        
+        }
+
     }
 
     /**
