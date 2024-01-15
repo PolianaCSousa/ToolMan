@@ -10,6 +10,7 @@
         <a href="{{route('funcionario.index')}}" class="nav-link">Funcionários</a>
         <a href="{{route('time.index')}}" class="nav-link">Times</a>
         <a href="{{route('faturamento.index')}}" class="nav-link">Faturamentos</a>
+        <a href="{{route('produto.index')}}" class="nav-link">Produtos</a>
         @auth
           <a href="{{route('dashboard')}}" class="nav-link">Meu perfil</a>
           <form action="{{route('logout')}}" method="POST">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FaturamentoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::middleware([
     })->name('home');
 });
 
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -38,6 +43,5 @@ Route::resource('/funcionario', FuncionarioController::class);
 
 Route::resource('/faturamento', FaturamentoController::class);
 
-Route::get('/inicio', function () {
-    return view('inicio');
-})->name('inicio');
+Route::resource('/produto', ProdutoController::class);
+
