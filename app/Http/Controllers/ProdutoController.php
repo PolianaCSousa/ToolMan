@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller
 {
@@ -11,7 +14,10 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $dados['produtos'] = Produto::select('id', 'nome', 'descricao', 'preco')->orderBy('nome')->get();
+
+        return view('cadastros.produtos.index', $dados);
+
     }
 
     /**
@@ -19,7 +25,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('cadastros.produtos.create');
     }
 
     /**
@@ -27,7 +33,32 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validação
+        //dd($request->all());
+
+        try{
+            DB::beginTransaction();
+
+            $produto = new Produto();
+            $produto->nome        = $request->nome;
+            $produto->descricao   = $request->descricao;
+            $produto->estoque     = $request->estoque;
+            $produto->estoque_max = $request->estoque_max;
+            $produto->estoque_min = $request->estoque_min;
+            $produto->preco       = $request->preco;
+           //dd($produto);
+            $produto->save();
+
+            
+
+            DB::commit();
+
+            return redirect()->route('produto.index');
+
+        }catch(Exception $e){
+            DB::rollBack();
+            //dd($e->getMessage());
+        }
     }
 
     /**
