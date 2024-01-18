@@ -4,6 +4,7 @@ use App\Http\Controllers\FaturamentoController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TimeController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,3 +46,4 @@ Route::resource('/faturamento', FaturamentoController::class);
 
 Route::resource('/produto', ProdutoController::class);
 
+Route::resource('/venda', VendaController::class);
