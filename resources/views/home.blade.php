@@ -11,6 +11,7 @@
         <a href="{{route('time.index')}}" class="nav-link">Times</a>
         <a href="{{route('faturamento.index')}}" class="nav-link">Faturamentos</a>
         <a href="{{route('produto.index')}}" class="nav-link">Produtos</a>
+        <a href="{{route('venda.index')}}" class="nav-link">Vendas</a>
         @auth
           <a href="{{route('dashboard')}}" class="nav-link">Meu perfil</a>
           <form action="{{route('logout')}}" method="POST">

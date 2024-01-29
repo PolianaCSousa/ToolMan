@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
+use App\Models\Produto;
 use Illuminate\Http\Request;
+
 
 class VendaController extends Controller
 {
@@ -11,7 +14,7 @@ class VendaController extends Controller
      */
     public function index()
     {
-        //
+        return view('cadastros.vendas.index');
     }
 
     /**
@@ -19,7 +22,9 @@ class VendaController extends Controller
      */
     public function create()
     {
-        //
+        $dados['funcionarios'] = Funcionario::select('id', 'nome')->orderby('nome')->get();
+        $dados['produtos'] = Produto::select('id', 'nome')->orderby('nome')->get();
+        return view('cadastros.vendas.create');
     }
 
     /**

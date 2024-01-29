@@ -12,7 +12,6 @@
       <a href="{{route('home')}}" class="btn btn-outline-primary"><i class="ti ti-arrow-narrow-left mr-3"></i>Voltar</a>
     </div>
   </div>
-
 </div>
 
 <div class="container text-end">
