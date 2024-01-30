@@ -18,4 +18,27 @@
   <a class="btn btn-primary" href="{{route('venda.create')}}">Cadastrar Venda</a>
 </div>
 
+<div class="container mt-3 bg-secondary bg-opacity-25">
+  <table>
+    <thead>
+      <tr>
+        <th>Funcionario</th>
+        <th>Valor</th>
+        <th>Data</th>
+        <th class="w-1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($vendas as $k => $v)
+        <tr>
+          <td>{{$v->}}</td>
+          <td>{{$v->}}</td>
+          <td>{{$v->data}}</td>
+          <td><a href="{{route('venda.show', $p->id)}}" class="btn btn-outline-dark">Visualizar</a></td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
+
 @endsection

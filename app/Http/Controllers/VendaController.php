@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use App\Models\Produto;
+use App\Models\Venda;
+use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -14,6 +16,11 @@ class VendaController extends Controller
      */
     public function index()
     {
+
+        $dados['vendas'] = Venda::select('');
+
+        dd($dados['vendas']);
+
         return view('cadastros.vendas.index');
     }
 
@@ -32,7 +39,29 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validação
+
+        //dd($request->all());
+
+        try{
+            DB::beginTransaction();
+
+            $venda = new Venda();
+            $venda->funcionario_id = $request->funcionario_id;
+            $venda->produto_id = $request->produto_id;
+            $venda->quantidade = $request->quantidade;
+            $venda->data = $request->data;
+            $venda->save();
+
+            DB::commit();
+
+            return redirect()->route('venda.index');
+
+        }catch(Exception $e){
+            DB::rollBack();
+        }
+
+       
     }
 
     /**
