@@ -24,7 +24,7 @@ class VendaController extends Controller
     {
         $dados['funcionarios'] = Funcionario::select('id', 'nome')->orderby('nome')->get();
         $dados['produtos'] = Produto::select('id', 'nome')->orderby('nome')->get();
-        return view('cadastros.vendas.create');
+        return view('cadastros.vendas.create', $dados);
     }
 
     /**

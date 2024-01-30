@@ -14,5 +14,5 @@ class Venda extends Model
         'produto_id',
         'quantidade',
         'data',
-    ]
+    ];
 }

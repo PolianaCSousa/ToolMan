@@ -17,6 +17,8 @@
 <div class="container">
   <form action="{{route('venda.store')}}" method="POST">
     @csrf
+    {{-- dd($funcionarios) --}}
+    <x-tabler.select name="funcionario_id" label="Funcionários" :dados="$funcionarios"/>
     
   </form>
 </div>
