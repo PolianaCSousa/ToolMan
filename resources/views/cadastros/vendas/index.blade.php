@@ -23,7 +23,6 @@
     <thead>
       <tr>
         <th>Funcionario</th>
-        <th>Valor</th>
         <th>Data</th>
         <th class="w-1"></th>
       </tr>
@@ -31,10 +30,9 @@
     <tbody>
       @foreach($vendas as $k => $v)
         <tr>
-          <td>{{$v->}}</td>
-          <td>{{$v->}}</td>
+          <td>{{$v->vendedor->nome}}</td>
           <td>{{$v->data}}</td>
-          <td><a href="{{route('venda.show', $p->id)}}" class="btn btn-outline-dark">Visualizar</a></td>
+          <td><a href="{{route('venda.show', $v->id)}}" class="btn btn-outline-dark">Visualizar</a></td>
         </tr>
       @endforeach
     </tbody>

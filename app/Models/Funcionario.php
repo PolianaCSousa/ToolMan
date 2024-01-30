@@ -34,4 +34,9 @@ class Funcionario extends Model
         return $this->hasOne(Time::class, 'lider_id', 'id');
     }
 
+    public function venda()
+    {
+        return $this->hasMany(Venda::class, 'funcionario_id', 'id');
+    }
+
 }

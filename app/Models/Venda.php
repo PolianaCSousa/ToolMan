@@ -15,4 +15,15 @@ class Venda extends Model
         'quantidade',
         'data',
     ];
+
+    public function vendedor()
+    {
+        return $this->belongsTo(Funcionario::class, 'funcionario_id', 'id');
+    }
+
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class, 'produto_id', 'id');
+    }
 }
+

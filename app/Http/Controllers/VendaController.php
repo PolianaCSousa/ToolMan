@@ -17,11 +17,11 @@ class VendaController extends Controller
     public function index()
     {
 
-        $dados['vendas'] = Venda::select('');
+        $dados['vendas'] = Venda::select('funcionario_id', 'data', 'id')->with('vendedor')->get();
 
-        dd($dados['vendas']);
+        //dd($dados['vendas']);
 
-        return view('cadastros.vendas.index');
+        return view('cadastros.vendas.index', $dados);
     }
 
     /**
